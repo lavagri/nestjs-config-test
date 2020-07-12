@@ -1,9 +1,9 @@
-import { TAG } from 'config';
+const config = require('config');
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class EService {
-  private readonly variable = `${TAG.ok}`;
+  private readonly variable = `${config.get('TAG').ok}`;
 
   constructor() {
     this.variable;

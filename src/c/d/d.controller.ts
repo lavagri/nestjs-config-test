@@ -1,4 +1,4 @@
-import { SOCKET_IO } from 'config';
+const config = require('config');
 import { Controller, Logger, Post } from '@nestjs/common';
 import { DService } from './d.service';
 
@@ -9,7 +9,7 @@ export class DController {
 
   @Post('/socket')
   socket() {
-    Logger.debug(`We use redis adapter from ${SOCKET_IO.redis.url}`)
+    Logger.debug(`We use redis adapter from ${config.get('SOCKET_IO').redis.url}`)
     return this.dService.emitNewValue();
   }
 

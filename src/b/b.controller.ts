@@ -1,4 +1,4 @@
-import { MAIL, DB } from 'config';
+const config = require('config');
 import { Controller, Get } from '@nestjs/common';
 
 @Controller('b')
@@ -6,6 +6,6 @@ export class BController {
 
   @Get()
   getEnvB() {
-      return { apiKey: MAIL.apiKey, db: DB.redis.appStore.password }
+      return { apiKey: config.get('MAIL').apiKey, db: config.get('DB').redis.appStore.password }
   }
 }

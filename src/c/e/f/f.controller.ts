@@ -1,22 +1,21 @@
-import { TAG } from 'config';
-import { RATE_LIMIT, UserRoles } from 'config';
+const config = require('config');
 import { Controller, Patch, Post } from '@nestjs/common';
 
-@Controller(`f - ${TAG.ok}`)
+@Controller(`f - ${config.get('TAG').ok}`)
 export class FController {
 
   @Post('/rate')
   rate() {
-    return RATE_LIMIT.points;
+    return config.get('RATE_LIMIT').points;
   }
 
   @Post('/role')
   roleCheck() {
-    return !!UserRoles.user;
+    return !!config.get('UserRoles').user;
   }
 
   @Patch('/duration')
   durationChange() {
-    return RATE_LIMIT.duration + 1;
+    return config.get('RATE_LIMIT').duration + 1;
   }
 }
